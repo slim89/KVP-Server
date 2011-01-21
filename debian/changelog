@@ -1,0 +1,5 @@
+kvp-server (1.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Dmitry <maintainer@email.org>  Thu, 13 Jan 2011 19:46:27 +0300

@@ -1,0 +1,20 @@
+INSTALL:
+
+a - use deb package
+	Instal package:
+		sudo dpkg -i [path to deb package]
+
+b - create deb package
+
+1	Download tar.gz file with this site
+
+2       Extract this archive to needed directory
+
+3       Go to this directory
+
+4	Create deb package
+		dpkg-buildpackage -rfakeroot
+                The package will be created in ../[this directory]
+ 
+4	Instal package
+		sudo dpkg -i [path to deb package]

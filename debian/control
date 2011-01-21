@@ -1,0 +1,14 @@
+Source: kvp-server
+Section: unknown
+Priority: extra
+Maintainer: Dmitry <maintainer@email.org>
+Build-Depends:  debhelper (>= 7.0.50~), libqt4-dev
+Standards-Version: 3.8.4
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/kvp-server.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/kvp-server.git;a=summary
+
+Package: kvp-server
+Architecture: any
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
