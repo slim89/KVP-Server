@@ -35,8 +35,6 @@ void MainThread::Init()
     type.typeSend="send";
 
 
-
-
     structure.separator ="/";
     structure.prefix ="#";
     structure.key= "type";
@@ -62,14 +60,13 @@ void MainThread::NewUser(int tmpID,  UserItem user)
     QTcpSocket* sock;
     if (cl->Socket(user.ID)==NULL)
     {
-        cl->SetLoged(tmpID, user);
-        qCritical()<<user.ID;
-        sock=cl->NotTmpSocket(user.ID);
+        sock = cl->SetLoged(tmpID, user);////????????????????возвращает сокет зачем нужна след функция?!
+
+        qCritical()<<"NEWUSER SetLoged - return sock"<<sock ;
         if (sock!=NULL)
         {
             qCritical()<<"Sock!=0"<<sock;
             sock->write("#s/ser*ver#m/good login-password#/");
-
         }
     }
     else
@@ -80,15 +77,13 @@ void MainThread::NewUser(int tmpID,  UserItem user)
             return;
         }
     }
-
     //////////////////////////////////////////
-    IMessage* mes=new Message("");
+    IMessage* mes=new Message("");//сообщение что подключился такой то клиент
     mes->AddPart(keys.o,"connect");
     QString str_ID=QString::number(user.ID);
     mes->AddPart(keys.id,str_ID);
     mes->AddPart(keys.s,cl->Nick(user.ID));
-    QString buf=mes->Unparse();//connect or disconnect
-    QTcpSocket* my_sock= cl->NotTmpSocket(user.ID);
+    QString buf=mes->Unparse();//message all ysers about connect client
     QMapIterator<QTcpSocket*,UserItem> iter=cl->LogedUsers();
     while (iter.hasNext())//всем шлем  такой то//
     {
@@ -96,22 +91,22 @@ void MainThread::NewUser(int tmpID,  UserItem user)
 
         if (user.friends_list.contains(QString::number(iter.value().ID)))
         { 
-            iter.key()->write(qPrintable(buf));//ALL SEND without ME
+
+            iter.key()->write(qPrintable(buf));//ALL SEND
             qCritical()<<"BUFFER"<<buf;
         }
 
     }
-    iter.toBack();
-
+   iter.toBack();
     while (iter.hasPrevious())
     {
         iter.previous();
         if (user.friends_list.contains(QString::number(iter.value().ID)))
         {
-            mes->AddPart(keys.s,iter.value().nick);
-            mes->AddPart(keys.id,QString::number(iter.value().ID));
-            buf=mes->Unparse();
-            my_sock->write(qPrintable(buf));//ALL SEND
+             mes->ReplacePart(keys.s,iter.value().nick);
+             mes->ReplacePart(keys.id,QString::number(iter.value().ID));
+             buf=mes->Unparse();//message client about connect each user from activlist
+             sock->write(qPrintable(buf));//ALL SEND
         }
     }
 
@@ -181,10 +176,11 @@ void MainThread::Send(QSharedPointer<IMessage> mes)
 
         return;
     }
-    message=mes->GetPart(keys.m);//Modified Andrey 17/01/11
-    mes->Delete(keys.id);
+   ///-------------------- message=mes->GetPart(keys.m);//Modified Andrey 17/01/11
+    //mes->Delete(keys.id);///////////////////////////////////////-------------------------------------------------
     mes->Delete(keys.s);//IF error then send nick in "#s/..."
-    mes->AddPart("id",sender);
+    //mes->AddPart("id",sender);
+    mes->ReplacePart(keys.id,sender);
     message=mes->Unparse();
     mes.clear();
     qCritical()<<"sender"<<sender;
@@ -227,35 +223,7 @@ void MainThread::Disconnected()
     }
     qCritical()<<"disconected ";
 }
-
-//PREPARSER----------------------------------------------------------------------
-int MainThread::PreParser(QString& buf)
-{
-    qCritical()<<buf;
-    if( buf.contains(structure.prefix+  structure.key+  structure.separator+structure.login+  structure.prefix) )
-    {
-       qCritical()<<"1  ";
-        return 1;
-    }
-    if( buf.contains(structure.prefix+structure.key+structure.separator+structure.send+structure.prefix))
-    {
-      qCritical()<<"2  ";
-        return 2;
-    }
-    if( buf.contains(structure.prefix+structure.key+structure.separator+structure.addfriend+structure.prefix))
-    {
-       qCritical()<<"3  ";
-        return 3;
-    }
-    if( buf.contains(structure.prefix+structure.key+structure.separator+structure.removefriend+structure.prefix))
-    {
-       qCritical()<<"4 ";
-        return 4;
-    }
-    return 0;
-}
-
-//READ----------------------------------------------------------------------------
+//READ----------------------------------------------------------------------------------
 void MainThread::Read()
 {
     qCritical()<<"READ ";
@@ -276,53 +244,71 @@ void MainThread::Read()
     QStringListIterator iter(strList);
     while(iter.hasNext())
     {
-        QString tmp=iter.next();
-
-        int res=PreParser(tmp);
-        qCritical()<<"GO PREPERSE  "<<res;
-        if (res==1)
+        QString buf=iter.next();
+        if( buf.contains(structure.prefix+  structure.key+  structure.separator+structure.login+  structure.prefix) )
         {
             qCritical()<<"RES2";
-            QSharedPointer<IMessage> mes(new Message(tmp));
+            QSharedPointer<IMessage> mes(new Message(buf));
             mes->AddPart(keys.s,QString::number(cl->ID(sock)));
             emit authentification(mes);
+            return;
         }
-        if (res==2)
+        if( buf.contains(structure.prefix+structure.key+structure.separator+structure.send+structure.prefix))
         {
-            QSharedPointer<IMessage> mes(new Message(tmp));
+            QSharedPointer<IMessage> mes(new Message(buf));
             mes->AddPart(keys.s,QString::number(cl->ID(sock)));
             emit send(mes);
+            return;
         }
-        if(res==3)
+        if( buf.contains(structure.prefix+structure.key+structure.separator+structure.addfriend+structure.prefix))
         {
-            QSharedPointer<IMessage> mes(new Message(tmp));
-            mes->Parse();
-            QString friends=mes->GetPart("addfr");
-            qCritical()<<"ADD FRIEND friend= "<<friends;
-            mes->deleteLater();
-            bool res =base->addFriend(id,friends);
-            bool res2 = cl->addFriend(sock,friends);
-            if(res && res2)
-                qCritical()<<"ADD FRIEND SUCCESSFUL";
-            else
-                 qCritical()<<"ADD FRIEND ERROR";
-
-
+            addFriend(sock,  id,  buf);
+            return;
         }
-        if(res==4)
+        if( buf.contains(structure.prefix+structure.key+structure.separator+structure.removefriend+structure.prefix))
         {
-            QSharedPointer<IMessage> mes1(new Message(tmp));
-            mes1->Parse();
-            QString friends=mes1->GetPart("rfr");
-            qCritical()<<"REMOVE FRIEND friend= "<<friends;
-            mes1->deleteLater();
-            bool res =base->removeFriend(id,friends);
-            bool res2 =cl->removeFriends(sock,friends);
-            if(res && res2)
-                qCritical()<<"REMOVE FRIEND SUCCESSFUL";
-            else
-                 qCritical()<<"REMOVE FRIEND ERROR";
-
+            removeFriend(sock,  id,  buf);
+            return;
         }
     }
+}
+bool MainThread::addFriend(QTcpSocket* sock, int id, QString buf)
+{
+                QSharedPointer<IMessage> mes(new Message(buf));
+                mes->Parse();
+                QString friends=mes->GetPart("addfr");
+                qCritical()<<"ADD FRIEND friend= "<<friends;
+                mes->deleteLater();
+                bool res =base->addFriend(id,friends);
+                bool res2 = cl->addFriend(sock,friends);
+                if(res && res2)
+                {
+                    qCritical()<<"ADD FRIEND SUCCESSFUL";
+                    return true;
+                }
+                else
+                {
+                     qCritical()<<"ADD FRIEND ERROR";
+                     return false;
+                 }
+}
+bool MainThread::removeFriend(QTcpSocket* sock, int id, QString buf)
+{
+               QSharedPointer<IMessage> mes1(new Message(buf));
+               mes1->Parse();
+               QString friends=mes1->GetPart("rfr");
+               qCritical()<<"REMOVE FRIEND friend= "<<friends;
+               mes1->deleteLater();
+               bool res =base->removeFriend(id,friends);
+               bool res2 =cl->removeFriends(sock,friends);
+               if(res && res2)
+               {
+                   qCritical()<<"REMOVE FRIEND SUCCESSFUL";
+                   return true;
+               }
+               else
+               {
+                    qCritical()<<"REMOVE FRIEND ERROR";
+                    return false;
+                }
 }

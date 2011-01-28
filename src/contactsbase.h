@@ -1,6 +1,5 @@
 #ifndef CONTACTSBASE_H
 #define CONTACTSBASE_H
-
 #include <QObject>
 #include <QDebug>
 #include <QtSql>

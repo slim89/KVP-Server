@@ -1,5 +1,7 @@
 include(../common_tests.pri)
 TARGET = ut_logregthread
+target.path = /usr/share/bin
+INSTALLS += target
 SOURCES += \
 ut_logregthread.cpp \
 $$SRCDIR/logregthread.cpp\

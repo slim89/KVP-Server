@@ -76,7 +76,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-6Gdb8Fiy4o,guid=462ddcb2b728c24493def9124d37f79c</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ViWkQcfHJe,guid=0d069029616b30a4d1c981834d3faf0e</value>
     <value type="QString">DEFAULTS_PATH=/usr/share/gconf/gnome.default.path</value>
     <value type="QString">DESKTOP_SESSION=gnome</value>
     <value type="QString">DISPLAY=:0.0</value>
@@ -84,8 +84,8 @@
     <value type="QString">GDM_KEYBOARD_LAYOUT=us</value>
     <value type="QString">GDM_LANG=ru_RU.utf8</value>
     <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-u8AhAJ</value>
-    <value type="QString">GNOME_KEYRING_PID=1177</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-CokTwO</value>
+    <value type="QString">GNOME_KEYRING_PID=1199</value>
     <value type="QString">GTK_MODULES=canberra-gtk-module</value>
     <value type="QString">HOME=/home/andrey</value>
     <value type="QString">LANG=ru_RU.utf8</value>
@@ -96,17 +96,17 @@
     <value type="QString">PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</value>
     <value type="QString">PWD=/home/andrey</value>
     <value type="QString">QTDIR=/usr/share/qt4</value>
-    <value type="QString">SESSION_MANAGER=local/andrey-desktop:@/tmp/.ICE-unix/1195,unix/andrey-desktop:/tmp/.ICE-unix/1195</value>
+    <value type="QString">SESSION_MANAGER=local/andrey-desktop:@/tmp/.ICE-unix/1217,unix/andrey-desktop:/tmp/.ICE-unix/1217</value>
     <value type="QString">SHELL=/bin/bash</value>
     <value type="QString">SPEECHD_PORT=7560</value>
-    <value type="QString">SSH_AGENT_PID=1229</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-u8AhAJ/ssh</value>
+    <value type="QString">SSH_AGENT_PID=1251</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-CokTwO/ssh</value>
     <value type="QString">USER=andrey</value>
     <value type="QString">USERNAME=andrey</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-andrey-KlYkH8/database</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-andrey-wFkP9d/database</value>
     <value type="QString">XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome:/etc/xdg</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=e61e9aecff20b70c75dfbbf84ce3cbe7-1295513499.647732-486938881</value>
+    <value type="QString">XDG_SESSION_COOKIE=e61e9aecff20b70c75dfbbf84ce3cbe7-1296019213.705273-628683765</value>
     <value type="QString">ftp_proxy=ftp://proxy.telma.nn:3128/</value>
     <value type="QString">http_proxy=http://proxy.telma.nn:3128/</value>
     <value type="QString">https_proxy=https://proxy.telma.nn:3128/</value>
@@ -128,7 +128,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-6Gdb8Fiy4o,guid=462ddcb2b728c24493def9124d37f79c</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ViWkQcfHJe,guid=0d069029616b30a4d1c981834d3faf0e</value>
     <value type="QString">DEFAULTS_PATH=/usr/share/gconf/gnome.default.path</value>
     <value type="QString">DESKTOP_SESSION=gnome</value>
     <value type="QString">DISPLAY=:0.0</value>
@@ -136,8 +136,8 @@
     <value type="QString">GDM_KEYBOARD_LAYOUT=us</value>
     <value type="QString">GDM_LANG=ru_RU.utf8</value>
     <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-u8AhAJ</value>
-    <value type="QString">GNOME_KEYRING_PID=1177</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-CokTwO</value>
+    <value type="QString">GNOME_KEYRING_PID=1199</value>
     <value type="QString">GTK_MODULES=canberra-gtk-module</value>
     <value type="QString">HOME=/home/andrey</value>
     <value type="QString">LANG=ru_RU.utf8</value>
@@ -148,17 +148,17 @@
     <value type="QString">PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</value>
     <value type="QString">PWD=/home/andrey</value>
     <value type="QString">QTDIR=/usr/share/qt4</value>
-    <value type="QString">SESSION_MANAGER=local/andrey-desktop:@/tmp/.ICE-unix/1195,unix/andrey-desktop:/tmp/.ICE-unix/1195</value>
+    <value type="QString">SESSION_MANAGER=local/andrey-desktop:@/tmp/.ICE-unix/1217,unix/andrey-desktop:/tmp/.ICE-unix/1217</value>
     <value type="QString">SHELL=/bin/bash</value>
     <value type="QString">SPEECHD_PORT=7560</value>
-    <value type="QString">SSH_AGENT_PID=1229</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-u8AhAJ/ssh</value>
+    <value type="QString">SSH_AGENT_PID=1251</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-CokTwO/ssh</value>
     <value type="QString">USER=andrey</value>
     <value type="QString">USERNAME=andrey</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-andrey-KlYkH8/database</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-andrey-wFkP9d/database</value>
     <value type="QString">XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome:/etc/xdg</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=e61e9aecff20b70c75dfbbf84ce3cbe7-1295513499.647732-486938881</value>
+    <value type="QString">XDG_SESSION_COOKIE=e61e9aecff20b70c75dfbbf84ce3cbe7-1296019213.705273-628683765</value>
     <value type="QString">ftp_proxy=ftp://proxy.telma.nn:3128/</value>
     <value type="QString">http_proxy=http://proxy.telma.nn:3128/</value>
     <value type="QString">https_proxy=https://proxy.telma.nn:3128/</value>
@@ -177,7 +177,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-AEkVvYcNoM,guid=997e5c6bb37c804b3d70f9944d36d6d0</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ViWkQcfHJe,guid=0d069029616b30a4d1c981834d3faf0e</value>
     <value type="QString">DEFAULTS_PATH=/usr/share/gconf/gnome.default.path</value>
     <value type="QString">DESKTOP_SESSION=gnome</value>
     <value type="QString">DISPLAY=:0.0</value>
@@ -185,8 +185,8 @@
     <value type="QString">GDM_KEYBOARD_LAYOUT=us</value>
     <value type="QString">GDM_LANG=ru_RU.utf8</value>
     <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-7bGQ4z</value>
-    <value type="QString">GNOME_KEYRING_PID=1224</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-CokTwO</value>
+    <value type="QString">GNOME_KEYRING_PID=1199</value>
     <value type="QString">GTK_MODULES=canberra-gtk-module</value>
     <value type="QString">HOME=/home/andrey</value>
     <value type="QString">LANG=ru_RU.utf8</value>
@@ -197,17 +197,17 @@
     <value type="QString">PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</value>
     <value type="QString">PWD=/home/andrey</value>
     <value type="QString">QTDIR=/usr/share/qt4</value>
-    <value type="QString">SESSION_MANAGER=local/andrey-desktop:@/tmp/.ICE-unix/1242,unix/andrey-desktop:/tmp/.ICE-unix/1242</value>
+    <value type="QString">SESSION_MANAGER=local/andrey-desktop:@/tmp/.ICE-unix/1217,unix/andrey-desktop:/tmp/.ICE-unix/1217</value>
     <value type="QString">SHELL=/bin/bash</value>
     <value type="QString">SPEECHD_PORT=7560</value>
-    <value type="QString">SSH_AGENT_PID=1276</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-7bGQ4z/ssh</value>
+    <value type="QString">SSH_AGENT_PID=1251</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-CokTwO/ssh</value>
     <value type="QString">USER=andrey</value>
     <value type="QString">USERNAME=andrey</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-andrey-cE611u/database</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-andrey-wFkP9d/database</value>
     <value type="QString">XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome:/etc/xdg</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=e61e9aecff20b70c75dfbbf84ce3cbe7-1295439567.524156-393967195</value>
+    <value type="QString">XDG_SESSION_COOKIE=e61e9aecff20b70c75dfbbf84ce3cbe7-1296019213.705273-628683765</value>
     <value type="QString">ftp_proxy=ftp://proxy.telma.nn:3128/</value>
     <value type="QString">http_proxy=http://proxy.telma.nn:3128/</value>
     <value type="QString">https_proxy=https://proxy.telma.nn:3128/</value>

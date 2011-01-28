@@ -197,9 +197,12 @@ bool ActiveClients::addFriend(QTcpSocket* sock, QString friends)
         if (iter.key()== sock)
         {
             qCritical()<<"ACTIV CLIENTS FRIEND LIST"<<logedUserMap[iter.key()].friends_list;
-            logedUserMap[iter.key()].friends_list.append(friends);
-            qCritical()<<"ACTIV CLIENTS FRIEND LIST AFTER ADD FRIEND"<<logedUserMap[iter.key()].friends_list;
-            return true;
+            if(!logedUserMap[iter.key()].friends_list.contains(friends ))
+            {
+                logedUserMap[iter.key()].friends_list.append(friends);
+                qCritical()<<"ACTIV CLIENTS FRIEND LIST AFTER ADD FRIEND"<<logedUserMap[iter.key()].friends_list;
+                return true;
+            }
         }
     }
     return false;
@@ -213,11 +216,19 @@ bool ActiveClients::removeFriends(QTcpSocket* sock, QString friends){
          if (iter.key()== sock)
          {
              qCritical()<<"ACTIV CLIENTS FRIEND LIST"<<logedUserMap[iter.key()].friends_list;
-             if(logedUserMap[iter.key()].friends_list.contains(friends))
+             if(logedUserMap[iter.key()].friends_list.contains(friends ))
              {
-                    logedUserMap[iter.key()].friends_list.remove(friends);
-                     qCritical()<<"ACTIV CLIENTS FRIEND LIST AFTER REMOVE FRIEND"<<logedUserMap[iter.key()].friends_list;
-                    return true;
+                 for (int i = 0; i < logedUserMap[iter.key()].friends_list.size(); ++i)
+                 {
+                    if(logedUserMap[iter.key()].friends_list.at(i)==friends)
+                    {
+                        logedUserMap[iter.key()].friends_list.removeAt(i);
+                        qCritical()<<"ACTIV CLIENTS FRIEND LIST AFTER REMOVE FRIEND"<<logedUserMap[iter.key()].friends_list;
+                        return true;
+                   }
+                 }
+                 //logedUserMap[iter.key()].friends_list.remove( friends +"/");
+
              }
              else
                 return false;

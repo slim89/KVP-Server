@@ -1,5 +1,7 @@
 include(../common_tests.pri)
 TARGET = ut_message
+target.path = /usr/share/bin
+INSTALLS += target
 SOURCES += \
 ut_message.cpp \
 $$SRCDIR/message.cpp

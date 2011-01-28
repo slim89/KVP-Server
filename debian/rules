@@ -1,10 +1,12 @@
 #!/usr/bin/make -f
 APPNAME := kvp-server
+TESTNAME := kvp-server-tests
 builddir:
 	mkdir -p builddir
       
 builddir/Makefile: builddir
 	cd builddir && qmake -recursive BUILD_FEATURES=check PREFIX=/usr ../$(APPNAME).pro
+	#qmake -recursive BUILD_FEATURES=check PREFIX=/usr ../tests/tests.pro
 build: build-stamp
 build-stamp: builddir/Makefile
 	dh_testdir
@@ -19,13 +21,17 @@ clean:
 	rm -rf builddir
 	dh_clean
 install: build
-	./rt
+	#chmod +x rt.sh
+	#./rt.sh
 	dh_testdir
 	dh_testroot
 	dh_clean -k
 	dh_installdirs
 	# Add here commands to install the package into debian/your_appname
 	cd builddir && $(MAKE) INSTALL_ROOT=$(CURDIR)/debian/$(APPNAME) install
+	rm -r $(CURDIR)/debian/$(APPNAME)/usr/share/bin
+	cd builddir && $(MAKE) INSTALL_ROOT=$(CURDIR)/debian/$(TESTNAME) install
+	rm -r $(CURDIR)/debian/$(TESTNAME)/usr/bin
 # Build architecture-independent files here.
 binary-indep: build install
 # We have nothing to do by default.
@@ -40,7 +46,7 @@ binary-arch: build install
 	dh_compress
 	dh_fixperms
 	dh_installdeb
-	dh_shlibdeps
+#	dh_shlibdeps
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb

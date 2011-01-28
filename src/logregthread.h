@@ -1,12 +1,10 @@
 #ifndef LOGREGTHREAD_H
 #define LOGREGTHREAD_H
-
 #include <QSharedPointer>
 #include <QThread>
 #include "message.h"
 #include "activeclients.h"
 #include "contactsbase.h"
-
 struct Key
 {
     QString s;

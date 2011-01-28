@@ -65,7 +65,10 @@ void Ut_ActiveClients::setLoged()
     UserItem user[10];
     for (int i=0;i<10;i++)
     {
-        user[i].friends_list="1/2/3/4/5/";
+        user[i].friends_list.append("1");
+        user[i].friends_list.append("2");
+        user[i].friends_list.append("3");
+        user[i].friends_list.append("4");
         user[i].ID=i;
         user[i].nick="User"+ QString::number(i);
         ActClients->Add(&sock[i]);

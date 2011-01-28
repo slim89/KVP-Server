@@ -1,12 +1,10 @@
 #ifndef MAINTHREAD_H
 #define MAINTHREAD_H
-
 #include <QObject>
 #include <QtNetwork>
 #include "logregthread.h"
 #include "message.h"
 #include "activeclients.h"
-
 struct Type
 {
     QString typeSend;
@@ -31,7 +29,7 @@ class MainThread : public QObject
 public:
     explicit MainThread(QCoreApplication* a);
     ~MainThread();
-    int PreParser(QString&);
+   // int PreParser(QString&);
 private:
     Key keys;
     Type type;
@@ -42,6 +40,8 @@ private:
     QSharedPointer <LogRegThread> LogReg_thread;
     QSharedPointer <ContactsBase> base;
     parsValue structure;
+    bool addFriend(QTcpSocket*,  int, QString);
+    bool removeFriend(QTcpSocket*, int, QString);
 signals:
     void initialize();
     void authentification(QSharedPointer<IMessage> mes);

@@ -12,7 +12,7 @@ int ContactsBase::WriteUser(QString nick, QString pass)
     QSqlQuery query = QSqlQuery(insert,*db);
     query.bindValue(":nick", nick);
     query.bindValue(":password", pass);
-    QString admin ="777";
+    QString admin ="/777/";
     query.bindValue(":friends", admin);//изначально у пользователя нет друзей
     qCritical()<<nick<<"  "<<pass;
     bool res= query.exec();
@@ -84,8 +84,8 @@ bool ContactsBase::connectDB()
    addFriend(2, "1");
    addFriend(2, "3");
 
-
-  /* removeFriend(1,"1");
+/*
+   removeFriend(1,"1");
    removeFriend(1,"2");
    removeFriend(1,"3");
    removeFriend(1,"4");*/
@@ -147,13 +147,16 @@ bool ContactsBase::addFriend(int id, QString myfriend)
 
           QString set_friends ="UPDATE accounts SET friends= :friends  WHERE id= :id";
           QSqlQuery query1(set_friends, *db);
-          get_friends = get_friends + "/"+ myfriend;
-          query1.bindValue(":friends", get_friends);
-          query1.bindValue(":id", id);
-          bool res = query1.exec();
-          if ( ! query1.isActive() )
-                      qCritical()<<query1.lastError().text();
-          return res;
+          if(!get_friends.contains("/" + myfriend +"/"))
+          {
+             get_friends = get_friends + myfriend +"/";
+             query1.bindValue(":friends", get_friends);
+             query1.bindValue(":id", id);
+             bool res = query1.exec();
+                    if ( ! query1.isActive() )
+                        qCritical()<<query1.lastError().text();
+            return res;
+          }
     }
 
     return false;
@@ -170,12 +173,12 @@ bool ContactsBase::removeFriend(int id, QString myfriend)
     {
           get_friends = query.value(0).toString();//получили исходный список друзей
           QString set_friends ="UPDATE accounts SET friends= :friends  WHERE id= :id";
-          QString del_friend = "/" + myfriend;
-          if(get_friends.contains(del_friend))//если есть такой друг
+          //QString del_friend = "/" + myfriend;
+          if(get_friends.contains("/" + myfriend +"/"))//если есть такой друг
           {
                 qCritical()<<"DO UDALENIYA"<<get_friends;
 
-                get_friends.remove(del_friend);
+                get_friends.remove("/" + myfriend);
                 qCritical()<<"POSLE UDALENIYA"<<get_friends;
           }
           else

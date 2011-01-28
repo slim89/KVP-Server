@@ -1,6 +1,5 @@
 #ifndef ACTIVECLIENTS_H
 #define ACTIVECLIENTS_H
-
 #include <QObject>
 #include <QString>
 #include <QDebug>
@@ -8,12 +7,11 @@
 #include <QMapIterator>
 #include <QSharedPointer>
 #include <QtNetwork>
-
 struct UserItem
 {
     int ID;
     QString nick;
-    QString friends_list;
+    QStringList friends_list;
 };
 
 class ActiveClients : public QObject

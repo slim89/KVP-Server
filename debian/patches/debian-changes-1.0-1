@@ -23,244 +23,44 @@ Forwarded: <no|not-needed|url proving that it has been forwarded>
 Reviewed-By: <name and email of someone who approved the patch>
 Last-Update: <YYYY-MM-DD>
 
---- /dev/null
-+++ kvp-server-1.0/rt
-@@ -0,0 +1,12 @@
-+TESTSDIR=/home/anton/kvp-server-1.0/tests
-+EXIT_CODE=0
-+for TEST in `ls ${TESTSDIR}/?t_*`; do
-+	cd $TEST
-+        $TEST
-+        if [ $? -ne 0 ]; then
-+                EXIT_CODE=$((EXIT_CODE+1))
-+        fi
-+	cd ..
-+done
-+
-+exit $EXIT_CODE
---- kvp-server-1.0.orig/kvp-server.pro
-+++ kvp-server-1.0/kvp-server.pro
-@@ -7,6 +7,7 @@ ISQT4 = $$find(QMAKEVERSION, ^[2-9])
- isEmpty( ISQT4 ) {
-     error("Use the qmake include with Qt4.4 or greater, on Debian that is qmake-qt4");
- }
-+QMAKE_CLEAN += configure-stamp build-stampv
- 
- TEMPLATE = subdirs
--SUBDIRS  = src
-+SUBDIRS  = src tests
---- /dev/null
-+++ kvp-server-1.0/kvp-server.pro.user
-@@ -0,0 +1,113 @@
-+<!DOCTYPE QtCreatorProject>
-+<qtcreator>
-+ <data>
-+  <variable>ProjectExplorer.Project.ActiveTarget</variable>
-+  <value type="int">0</value>
-+ </data>
-+ <data>
-+  <variable>ProjectExplorer.Project.EditorSettings</variable>
-+  <valuemap type="QVariantMap">
-+   <value key="EditorConfiguration.Codec" type="QByteArray">System</value>
-+  </valuemap>
-+ </data>
-+ <data>
-+  <variable>ProjectExplorer.Project.Target.0</variable>
-+  <valuemap type="QVariantMap">
-+   <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">Настольный компьютер</value>
-+   <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">Qt4ProjectManager.Target.DesktopTarget</value>
-+   <value key="ProjectExplorer.Target.ActiveBuildConfiguration" type="int">0</value>
-+   <value key="ProjectExplorer.Target.ActiveRunConfiguration" type="int">0</value>
-+   <valuemap key="ProjectExplorer.Target.BuildConfiguration.0" type="QVariantMap">
-+    <valuemap key="ProjectExplorer.BuildConfiguration.BuildStep.0" type="QVariantMap">
-+     <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">qmake</value>
-+     <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">QtProjectManager.QMakeBuildStep</value>
-+     <valuelist key="QtProjectManager.QMakeBuildStep.QMakeArguments" type="QVariantList"/>
-+    </valuemap>
-+    <valuemap key="ProjectExplorer.BuildConfiguration.BuildStep.1" type="QVariantMap">
-+     <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">Сборка</value>
-+     <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">Qt4ProjectManager.MakeStep</value>
-+     <value key="Qt4ProjectManager.MakeStep.Clean" type="bool">false</value>
-+     <valuelist key="Qt4ProjectManager.MakeStep.MakeArguments" type="QVariantList"/>
-+     <value key="Qt4ProjectManager.MakeStep.MakeCommand" type="QString"></value>
-+    </valuemap>
-+    <value key="ProjectExplorer.BuildConfiguration.BuildStepsCount" type="int">2</value>
-+    <valuemap key="ProjectExplorer.BuildConfiguration.CleanStep.0" type="QVariantMap">
-+     <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">Сборка</value>
-+     <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">Qt4ProjectManager.MakeStep</value>
-+     <value key="Qt4ProjectManager.MakeStep.Clean" type="bool">true</value>
-+     <valuelist key="Qt4ProjectManager.MakeStep.MakeArguments" type="QVariantList">
-+      <value type="QString">clean</value>
-+     </valuelist>
-+     <value key="Qt4ProjectManager.MakeStep.MakeCommand" type="QString"></value>
-+    </valuemap>
-+    <value key="ProjectExplorer.BuildConfiguration.CleanStepsCount" type="int">1</value>
-+    <value key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment" type="bool">false</value>
-+    <valuelist key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges" type="QVariantList"/>
-+    <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">Отладка</value>
-+    <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">Qt4ProjectManager.Qt4BuildConfiguration</value>
-+    <value key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration" type="int">2</value>
-+    <value key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory" type="QString">/home/anton/kvp-server-build-desktop</value>
-+    <value key="Qt4ProjectManager.Qt4BuildConfiguration.QtVersionId" type="int">2</value>
-+    <value key="Qt4ProjectManager.Qt4BuildConfiguration.ToolChain" type="int">0</value>
-+    <value key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild" type="bool">true</value>
-+   </valuemap>
-+   <valuemap key="ProjectExplorer.Target.BuildConfiguration.1" type="QVariantMap">
-+    <valuemap key="ProjectExplorer.BuildConfiguration.BuildStep.0" type="QVariantMap">
-+     <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">qmake</value>
-+     <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">QtProjectManager.QMakeBuildStep</value>
-+     <valuelist key="QtProjectManager.QMakeBuildStep.QMakeArguments" type="QVariantList"/>
-+    </valuemap>
-+    <valuemap key="ProjectExplorer.BuildConfiguration.BuildStep.1" type="QVariantMap">
-+     <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">Сборка</value>
-+     <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">Qt4ProjectManager.MakeStep</value>
-+     <value key="Qt4ProjectManager.MakeStep.Clean" type="bool">false</value>
-+     <valuelist key="Qt4ProjectManager.MakeStep.MakeArguments" type="QVariantList"/>
-+     <value key="Qt4ProjectManager.MakeStep.MakeCommand" type="QString"></value>
-+    </valuemap>
-+    <value key="ProjectExplorer.BuildConfiguration.BuildStepsCount" type="int">2</value>
-+    <valuemap key="ProjectExplorer.BuildConfiguration.CleanStep.0" type="QVariantMap">
-+     <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">Сборка</value>
-+     <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">Qt4ProjectManager.MakeStep</value>
-+     <value key="Qt4ProjectManager.MakeStep.Clean" type="bool">true</value>
-+     <valuelist key="Qt4ProjectManager.MakeStep.MakeArguments" type="QVariantList">
-+      <value type="QString">clean</value>
-+     </valuelist>
-+     <value key="Qt4ProjectManager.MakeStep.MakeCommand" type="QString"></value>
-+    </valuemap>
-+    <value key="ProjectExplorer.BuildConfiguration.CleanStepsCount" type="int">1</value>
-+    <value key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment" type="bool">false</value>
-+    <valuelist key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges" type="QVariantList"/>
-+    <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">Релиз</value>
-+    <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">Qt4ProjectManager.Qt4BuildConfiguration</value>
-+    <value key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration" type="int">0</value>
-+    <value key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory" type="QString">/home/anton/kvp-server-build-desktop</value>
-+    <value key="Qt4ProjectManager.Qt4BuildConfiguration.QtVersionId" type="int">2</value>
-+    <value key="Qt4ProjectManager.Qt4BuildConfiguration.ToolChain" type="int">0</value>
-+    <value key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild" type="bool">true</value>
-+   </valuemap>
-+   <value key="ProjectExplorer.Target.BuildConfigurationCount" type="int">2</value>
-+   <valuemap key="ProjectExplorer.Target.RunConfiguration.0" type="QVariantMap">
-+    <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">src</value>
-+    <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">Qt4ProjectManager.Qt4RunConfiguration</value>
-+    <value key="Qt4ProjectManager.Qt4RunConfiguration.BaseEnvironmentBase" type="int">2</value>
-+    <valuelist key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments" type="QVariantList"/>
-+    <value key="Qt4ProjectManager.Qt4RunConfiguration.ProFile" type="QString">src/src.pro</value>
-+    <value key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix" type="bool">false</value>
-+    <value key="Qt4ProjectManager.Qt4RunConfiguration.UseTerminal" type="bool">false</value>
-+    <valuelist key="Qt4ProjectManager.Qt4RunConfiguration.UserEnvironmentChanges" type="QVariantList"/>
-+    <value key="Qt4ProjectManager.Qt4RunConfiguration.UserSetName" type="bool">false</value>
-+    <value key="Qt4ProjectManager.Qt4RunConfiguration.UserSetWorkingDirectory" type="bool">false</value>
-+    <value key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory" type="QString"></value>
-+   </valuemap>
-+   <value key="ProjectExplorer.Target.RunConfigurationCount" type="int">1</value>
-+  </valuemap>
-+ </data>
-+ <data>
-+  <variable>ProjectExplorer.Project.TargetCount</variable>
-+  <value type="int">1</value>
-+ </data>
-+ <data>
-+  <variable>ProjectExplorer.Project.Updater.FileVersion</variable>
-+  <value type="int">4</value>
-+ </data>
-+</qtcreator>
---- kvp-server-1.0.orig/tests/common_tests.pri
-+++ kvp-server-1.0/tests/common_tests.pri
-@@ -4,4 +4,3 @@ DEPENDPATH = $$INCLUDEPATH
- QT += testlib network
- QT += core
- QT += network
--TEMPLATE = app
---- /dev/null
-+++ kvp-server-1.0/tests/rt
-@@ -0,0 +1,12 @@
-+TESTSDIR=/home/anton/kvp-server-1.0/tests
-+EXIT_CODE=0
-+for TEST in `ls ${TESTSDIR}/?t_*`; do
-+	cd $TEST
-+        $TEST
-+        if [ $? -ne 0 ]; then
-+                EXIT_CODE=$((EXIT_CODE+1))
-+        fi
-+	cd ..
-+done
-+
-+exit $EXIT_CODE
---- /dev/null
-+++ kvp-server-1.0/tests/unit_tests.sh
-@@ -0,0 +1,10 @@
-+#! /bin/bash
-+for f in ut_*; do
-+	if [ $f == "ut_template" ]; then
-+		continue
-+	fi
-+
-+	if [ ! -e $f/disabled -a ! -e $f/deleted ]; then
-+		echo $f
-+	fi
-+done
---- /dev/null
-+++ kvp-server-1.0/tests/testfile
-@@ -0,0 +1,4 @@
-+nick1/pass1
-+nick2/pass2
-+nick3/pass3
-+nick4/pass4
---- /dev/null
-+++ kvp-server-1.0/tests/tests.pro
-@@ -0,0 +1,10 @@
-+TEMPLATE = subdirs
-+contains(BUILD_FEATURES,check) {
-+    system(echo CHECK)
-+    subdirs=$$system(ls -1d ut_*/*.pro ft_*/*.pro 2>/dev/null | sed 's!/.*!!')
-+    for(suitename, subdirs):{
-+       SUBDIRS += $$suitename
-+    }
-+} else {
-+SUBDIRS =
-+}
---- kvp-server-1.0.orig/tests/ut_activeclients/ut_activeclients.pro
-+++ kvp-server-1.0/tests/ut_activeclients/ut_activeclients.pro
-@@ -6,5 +6,3 @@ $$SRCDIR/activeclients.cpp
- HEADERS += ut_activeclients.h\
- $$SRCDIR/activeclients.h
- 
--QMAKE_CLEAN += $$TARGET \
--Makefile
 --- kvp-server-1.0.orig/tests/ut_logregthread/ut_logregthread.pro
 +++ kvp-server-1.0/tests/ut_logregthread/ut_logregthread.pro
-@@ -7,6 +7,3 @@ $$SRCDIR/contactsfile.cpp
- HEADERS += ut_logregthread.h\
- $$SRCDIR/logregthread.h\
- $$SRCDIR/contactsfile.h
--
--QMAKE_CLEAN += $$TARGET \
--Makefile
---- kvp-server-1.0.orig/tests/ut_contactsfile/ut_contactsfile.pro
-+++ kvp-server-1.0/tests/ut_contactsfile/ut_contactsfile.pro
-@@ -5,7 +5,3 @@ ut_contactsfile.cpp \
- $$SRCDIR/contactsfile.cpp
- HEADERS += ut_contactsfile.h\
- $$SRCDIR/contactsfile.h
--
--QMAKE_CLEAN += $$TARGET \
--testfile\
--Makefile
---- kvp-server-1.0.orig/src/src.pro
-+++ kvp-server-1.0/src/src.pro
-@@ -3,14 +3,12 @@ QT += core
- QT -= gui
- CONFIG += console thread
- CONFIG -= app_bundle
--#TEMPLATE = app
- SOURCES += main.cpp \
-  message.cpp \
-  activeclients.cpp \
-  mainthread.cpp \
-  contactsfile.cpp \
-  logregthread.cpp
--
- HEADERS += message.h \
-  activeclients.h \
-  mainthread.h \
+@@ -1,5 +1,7 @@
+ include(../common_tests.pri)
+ TARGET = ut_logregthread
++target.path = /usr/share/bin
++INSTALLS += target
+ SOURCES += \
+ ut_logregthread.cpp \
+ $$SRCDIR/logregthread.cpp\
+--- kvp-server-1.0.orig/tests/ut_message/ut_message.pro
++++ kvp-server-1.0/tests/ut_message/ut_message.pro
+@@ -1,5 +1,7 @@
+ include(../common_tests.pri)
+ TARGET = ut_message
++target.path = /usr/share/bin
++INSTALLS += target
+ SOURCES += \
+ ut_message.cpp \
+ $$SRCDIR/message.cpp
+--- kvp-server-1.0.orig/tests/ut_contactsbase/ut_contactsbase.pro
++++ kvp-server-1.0/tests/ut_contactsbase/ut_contactsbase.pro
+@@ -3,6 +3,8 @@
+ # -------------------------------------------------
+ include(../common_tests.pri)
+ TARGET = ut_contactsbase
++target.path = /usr/share/bin
++INSTALLS += target
+ SOURCES += \
+ ut_contactsbase.cpp\
+ $$SRCDIR/contactsbase.cpp
+--- kvp-server-1.0.orig/tests/ut_activeclients/ut_activeclients.pro
++++ kvp-server-1.0/tests/ut_activeclients/ut_activeclients.pro
+@@ -1,5 +1,7 @@
+ include(../common_tests.pri)
+ TARGET = ut_activeclients
++target.path = /usr/share/bin
++INSTALLS += target
+ SOURCES += \
+ ut_activeclients.cpp \
+ $$SRCDIR/activeclients.cpp

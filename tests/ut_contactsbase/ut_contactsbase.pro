@@ -3,6 +3,8 @@
 # -------------------------------------------------
 include(../common_tests.pri)
 TARGET = ut_contactsbase
+target.path = /usr/share/bin
+INSTALLS += target
 SOURCES += \
 ut_contactsbase.cpp\
 $$SRCDIR/contactsbase.cpp

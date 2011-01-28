@@ -98,9 +98,7 @@ bool Message::Delete(QString _prefix)
      else
          return false;
 
-
 }
-
 //DESTRUCTOR---------------------------------------------------------
 Message::~Message()
 {
